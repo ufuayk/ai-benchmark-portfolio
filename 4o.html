@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Navbar */
+    nav {
+      background: #0d2538;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00bcd4;
+    }
+
+    /* Header Section */
+    header {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom, #0d2538, #1e3d59);
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    header button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      background: #00bcd4;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    header button:hover {
+      background: #008c9e;
+    }
+
+    /* About Section */
+    #about {
+      padding: 4rem 2rem;
+      background: #f4f4f4;
+      text-align: center;
+    }
+
+    #about h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #about p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* Projects Section */
+    #projects {
+      padding: 4rem 2rem;
+    }
+
+    #projects h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .project h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .project p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .project a {
+      text-decoration: none;
+      color: #00bcd4;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .project a:hover {
+      color: #008c9e;
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 4rem 2rem;
+      background: #0d2538;
+      color: white;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    #contact form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    #contact form input,
+    #contact form textarea,
+    #contact form button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #contact form input,
+    #contact form textarea {
+      background: #ffffff;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    #contact form button {
+      background: #00bcd4;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #contact form button:hover {
+      background: #008c9e;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1rem 2rem;
+      text-align: center;
+      background: #1e3d59;
+      color: white;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>My Portfolio</h1>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Welcome to My Portfolio</h1>
+    <p>Hi, I'm a web developer passionate about creating modern, responsive, and user-friendly websites.</p>
+    <button>Explore My Work</button>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a self-taught web developer with experience in HTML, CSS, JavaScript, and modern frameworks. I love solving
+      problems and building elegant solutions for the web.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <img src="https://via.placeholder.com/300x200" alt="Project 1">
+        <h3>Project 1</h3>
+        <p>A brief description of the project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/300x200" alt="Project 2">
+        <h3>Project 2</h3>
+        <p>A brief description of the project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/300x200" alt="Project 3">
+        <h3>Project 3</h3>
+        <p>A brief description of the project goes here.</p>
+        <a href="#">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required="">
+      <input type="email" placeholder="Your Email" required="">
+      <textarea placeholder="Your Message" rows="5" required=""></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 My Portfolio. All rights reserved.</p>
+  </footer>
+
+
+</body></html>

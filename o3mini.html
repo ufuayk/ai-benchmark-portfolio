@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    /* Reset and Basics */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    
+    /* Navigation */
+    header {
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    .nav-links a {
+      font-size: 1rem;
+      color: #333;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #007BFF;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #007BFF, #00d4ff);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+      margin-top: 70px; /* Give space for fixed header */
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .hero .btn {
+      background: #fff;
+      color: #007BFF;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .hero .btn:hover {
+      background: #007BFF;
+      color: #fff;
+    }
+
+    /* About Section */
+    section {
+      padding: 4rem 0;
+    }
+    #about {
+      background: #f9f9f9;
+    }
+    #about .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    #about .about-img,
+    #about .about-text {
+      flex: 1 1 45%;
+      padding: 1rem;
+    }
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    #about p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Portfolio Section */
+    #portfolio {
+      background: #fff;
+    }
+    #portfolio h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .portfolio-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .portfolio-item img {
+      transition: transform 0.3s;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.1);
+    }
+    .portfolio-item .overlay {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0, 123, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+    .portfolio-item:hover .overlay {
+      opacity: 1;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: #f9f9f9;
+      text-align: center;
+    }
+    #contact h2 {
+      margin-bottom: 2rem;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 1rem;
+    }
+    .contact-form button {
+      background: #007BFF;
+      color: #fff;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #0056b3;
+    }
+    
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+      }
+      .nav-links li {
+        margin: 1rem 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      #about .content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <a href="#hero"><h1>MyPortfolio</h1></a>
+        </div>
+        <button class="menu-toggle" id="mobile-menu">&#9776;</button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <h1>Welcome to My Portfolio</h1>
+      <p>I'm a creative professional with a passion for design and development.</p>
+      <button class="btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'});">View My Work</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="content">
+        <div class="about-img">
+          <!-- Replace with your own image or illustration -->
+          <img src="https://via.placeholder.com/500x400" alt="About Me" />
+        </div>
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>Hello! I am a creative professional with years of experience in design and development. I thrive on turning complex challenges into simple, beautiful, and intuitive designs. When I'm not coding or designing, you can find me exploring new technologies and techniques.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <div class="container">
+      <h2>My Work</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/500x300" alt="Project 1">
+          <div class="overlay">Project 1</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/500x300" alt="Project 2">
+          <div class="overlay">Project 2</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/500x300" alt="Project 3">
+          <div class="overlay">Project 3</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/500x300" alt="Project 4">
+          <div class="overlay">Project 4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 MyPortfolio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    
+    menuToggle.addEventListener('click', () => {
+      if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+      } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+      }
+    });
+
+    // Close mobile menu when clicking a link (optional)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth <= 768) {
+          navLinks.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

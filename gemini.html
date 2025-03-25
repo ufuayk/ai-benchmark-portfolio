@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Reset some browser defaults */
+        * {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #007bff; /* A modern blue */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            color: #222;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;  /* Removes extra space below images */
+        }
+
+        /* Header/Navigation */
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Ensure it stays on top */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            font-weight: 500; /* Slightly bolder */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #0056b3; /* Darker blue on hover */
+            text-decoration: none; /* Remove underline on hover */
+        }
+
+        /* Burger Menu (Mobile) */
+        .burger {
+            display: none; /* Hidden by default on larger screens */
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: #e9ecef; /* Light gray background */
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+
+        /* About Section */
+        #about {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .about-content img {
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        .about-content p {
+            text-align: left;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            background-color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .portfolio-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden; /* Ensure images don't overflow */
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistent look */
+            object-fit: cover; /* Cover the area, may crop the image */
+        }
+
+        .portfolio-item h3 {
+            margin: 1rem 0;
+            padding: 0 1rem;
+        }
+
+        .portfolio-item p {
+            padding: 0 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-item a {
+            display: block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .portfolio-item a:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #e9ecef;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        #contact-form input,
+        #contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        #contact-form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        #contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .social-links {
+            margin-top: 0.5rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            color: #ddd;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            /* Navigation */
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                right: 0;
+                background-color: #fff;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transform: translateX(100%); /* Start off-screen */
+                transition: transform 0.5s ease-in;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .nav-active {
+                transform: translateX(0%); /* Slide in when active */
+            }
+
+            /* Burger animation */
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .toggle .line2 {
+                opacity: 0;
+            }
+
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Hero Section */
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            /* About Section */
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-content img {
+                width: 150px;
+            }
+
+            .about-content p {
+                text-align: left;
+            }
+
+            /* Portfolio Section */
+            .portfolio-grid {
+                grid-template-columns: 1fr; /* One column on small screens */
+                padding: 0 1rem;
+            }
+
+            /* Contact Section */
+            #contact-form {
+                padding: 1rem;
+            }
+        }
+
+        /* CSS for the navLinkFade animation */
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header/Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Your Name</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Hello, I'm Your Name</h1>
+            <p>A passionate web developer/designer creating awesome digital experiences.</p>
+            <a href="#portfolio" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="placeholder-image.jpg" alt="Your Photo">  <!-- Replace with your actual image -->
+            <p>
+                Write a compelling paragraph about yourself here.  Include your skills,
+                experience, and what you're passionate about.  Tailor it to the specific
+                roles you're seeking.  For example:
+                "I'm a front-end developer with 3+ years of experience building responsive and
+                user-friendly web applications.  I specialize in React, JavaScript, and CSS.
+                I'm passionate about creating clean, efficient code and delivering exceptional
+                user experiences."
+            </p>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="placeholder-image.jpg" alt="Project 1">
+                <h3>Project 1 Title</h3>
+                <p>Brief description of the project.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+            <div class="portfolio-item">
+                <img src="placeholder-image.jpg" alt="Project 2">
+                <h3>Project 2 Title</h3>
+                <p>Brief description of the project.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+            <!-- Add more portfolio items here -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2023 Your Name. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <!-- Add more social links -->
+        </div>
+    </footer>
+
+    <script>
+        const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            burger.addEventListener('click', () => {
+                // Toggle Nav
+                nav.classList.toggle('nav-active');
+
+                //Animate Links
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                    }
+                });
+                //Burger Animation
+                burger.classList.toggle('toggle');
+            });
+        }
+
+        navSlide();
+    </script>
+</body>
+</html>
